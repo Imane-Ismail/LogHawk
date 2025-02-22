@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='loghawk',  # Package name
-    version='1.3,  # Version number
+    version='1.3',  # Version number
     author='Imane Ismail',  
     author_email='imane.fahmy@gmail.com', 
     description='A log analysis tool that detects anomalies in log files.',  # Short description
