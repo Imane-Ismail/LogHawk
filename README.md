@@ -6,6 +6,6 @@
 ## Installation
 
 ```bash
-git clone ttps://github.com/Imane-Ismail/loghawk.git
+git clone Https://github.com/Imane-Ismail/loghawk.git
 cd loghawk
 pip install .
