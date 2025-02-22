@@ -1,0 +1,38 @@
+name: Publish to PyPI
+
+
+on:
+  push:
+    tags:
+      - "v*"  # Runs only when a tag like v1.0.0 is pushed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+
+        with:
+          python-version: "3.x"
+
+
+      - name: Install Dependencies
+        run: pip install setuptools wheel twine
+
+      - name: Build Package
+        run: python setup.py sdist bdist_wheel
+
+      - name: Publish to PyPI
+
+        env:
+
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+
+        run: twine upload dist/*
