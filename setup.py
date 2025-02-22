@@ -1,25 +1,17 @@
 from setuptools import setup, find_packages
-
-
 setup(
-
-    name="loghawk",
-
-    version="1.0",
-
+    name='loghawk',
+    version='0.1.0',
     packages=find_packages(),
-
-    install_requires=[],
-
+    install_requires=[
+        # your dependencies here
+    ],
     entry_points={
-
-        "console_scripts": [
-
-            "loghawk=loghawk_cli:main",
-
+        'console_scripts': [
+            'loghawk = loghawk.cli:main',  # Calls main() from cli.py
         ],
-
     },
+)
 
     author="Imane Ismail",
 
