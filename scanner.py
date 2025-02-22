@@ -3,6 +3,20 @@ import os
 import json 
 from collections import defaultdict 
 
+from setuptools import setup, find_packages
+setup(
+    name='loghawk',
+    version='0.1.0',
+    packages=find_packages(),
+    install_requires=[
+        # your dependencies here
+    ],
+    entry_points={
+        'console_scripts': [
+            'loghawk = loghawk.cli:main',  # Calls main() from cli.py
+        ],
+    },
+)
 class LogHawk: 
 	"""Log analysis tool for detecting suspicious activities.""" 
 	patterns = { 
