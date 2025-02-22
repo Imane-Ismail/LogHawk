@@ -14,7 +14,7 @@ setup(
         'pyfiglet',  # For fancy ASCII art
         'pandas',  # For structured log analysis
         'colorama',  # For colored output in terminal
-        're2',  # For fast regex matching (optional, use 'regex' if needed)
+        'regex',  # For fast regex matching 
     ],
 
     entry_points={
