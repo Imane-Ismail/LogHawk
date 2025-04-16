@@ -1,15 +1,32 @@
-import argparse
+import sys
+import os
+import pyfiglet
 from loghawk.scanner import LogHawk
 
 def main():
-    parser = argparse.ArgumentParser(description="LogHawk - Logs Analysis Tool")
-    parser.add_argument("log_directory", help="Directory containing log files to analyze")
-    parser.add_argument("-o", "--output", default="loghawk_report.txt", help="Output file for results")
-   
-    args = parser.parse_args()
-  
-    LogHawk.scan_directory(args.log_directory, args.output)
+    ascii_banner = pyfiglet.figlet_format("LogHawk")
+    print(ascii_banner)
+    print("Your Log Analysis Tool\n")
 
+    if len(sys.argv) != 2:
+        print("Usage: loghawk <logfile_or_directory>")
+        sys.exit(1)
+
+    target = sys.argv[1]
+
+    if os.path.isdir(target):
+        LogHawk.scan_directory(target)
+    elif os.path.isfile(target):
+        alerts, summary = LogHawk.analyze_logs(target)
+        if alerts:
+            print(f"[+] Suspicious events found in: {target}")
+            for alert in alerts:
+                print(alert)
+        else:
+            print("No suspicious events detected.")
+    else:
+        print("[-] Invalid path. Please provide a log file or directory.")
+        
 if __name__ == "__main__":
 
     main()
