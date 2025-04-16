@@ -5,6 +5,7 @@ from collections import defaultdict
 
 class LogHawk:
     """Log analysis tool for detecting suspicious activities."""
+    
     patterns = {
         "Failed Logins": re.compile(r"Failed login|authentication failure", re.IGNORECASE),
         "Lateral Movement": re.compile(r"(RDP|SMB) connection from .*", re.IGNORECASE),
@@ -74,4 +75,3 @@ class LogHawk:
             print(f"{category}: {count} occurrences")
 
         print(f"\n[+] Detailed report saved to: {output_file}")
-
