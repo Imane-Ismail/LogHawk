@@ -1,31 +1,30 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='loghawk',  # Package name
-    version='1.4',  # Version number
-    author='Imane Ismail',  
-    author_email='imane.fahmy@gmail.com', 
-    description='A log analysis tool that detects anomalies in log files.',  # Short description
-    long_description=open('README.md').read(),  # Read long description from README.md
-    long_description_content_type='text/markdown',  # Markdown format for long description
-    url='https://github.com/Imane-Ismail/LogHawk.git',  # Your GitHub repo link
-    packages=find_packages(),  # Automatically find all packages
+    name='loghawk',
+    version='1.4',
+    author='Imane Ismail',
+    author_email='imane.fahmy@gmail.com',
+    description='A log analysis tool that detects anomalies in log files.',
+    long_description="Lightweight log analysis CLI tool for detecting suspicious activity in system logs.",
+    long_description_content_type='text/markdown',
+    url='https://github.com/Imane-Ismail/LogHawk.git',
+    packages=find_packages(),
     install_requires=[
-        'pyfiglet',  # For fancy ASCII art
-        'pandas',  # For structured log analysis
-        'colorama',  # For colored output in terminal
-        'regex',  # For fast regex matching 
+        'pyfiglet',
+        'pandas',
+        'colorama',
+        'regex',
     ],
-
     entry_points={
         'console_scripts': [
-            'loghawk = loghawk.cli:main',  # Links loghawk command to cli.py
+            'loghawk = loghawk.loghawk_cli:main',
         ],
     },
     classifiers=[
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',  # Adjust if using a different license
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.7',  # Minimum Python version required
+    python_requires='>=3.7',
 )
