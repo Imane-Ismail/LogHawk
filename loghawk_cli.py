@@ -1,6 +1,7 @@
 import sys
 import os
 import pyfiglet
+import argparse
 from loghawk.scanner import LogHawk
 
 def main():
@@ -8,26 +9,25 @@ def main():
     print(ascii_banner)
     print("Your Log Analysis Tool\n")
 
-    if len(sys.argv) != 2:
-        print("Usage: loghawk <logfile_or_directory>")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description="LogHawk - Scan log files for suspicious activity.")
+    parser.add_argument("--input", type=str, help="Path to the log file or directory", required=True)
+    args = parser.parse_args()
 
-    target = sys.argv[1]
-
-    if os.path.isdir(target):
-        LogHawk.scan_directory(target)
-    elif os.path.isfile(target):
-        alerts, summary = LogHawk.analyze_logs(target)
+    if os.path.isdir(args.input):
+        LogHawk.scan_directory(args.input)
+    elif os.path.isfile(args.input):
+        alerts, summary = LogHawk.analyze_logs(args.input)
         if alerts:
-            print(f"[+] Suspicious events found in: {target}")
+            print(f"\n[+] Suspicious events found in: {args.input}\n")
             for alert in alerts:
                 print(f"[{alert['Category']}] {alert['Timestamp']} - Line {alert['Line Number']}: {alert['Log Entry']}")
-
+            print("\n=== Summary of Detected Events ===")
+            for category, count in summary.items():
+                print(f"{category}: {count} event(s)")
         else:
-            print("No suspicious events detected.")
+            print("[-] No suspicious events detected.")
     else:
-        print("[-] Invalid path. Please provide a log file or directory.")
-        
-if __name__ == "__main__":
+        print("❌ Invalid path. Please provide a valid log file or directory.")
 
+if __name__ == "__main__":
     main()
