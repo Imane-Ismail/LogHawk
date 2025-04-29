@@ -21,7 +21,8 @@ def main():
         if alerts:
             print(f"[+] Suspicious events found in: {target}")
             for alert in alerts:
-                print(alert)
+                print(f"[{alert['Category']}] {alert['Timestamp']} - Line {alert['Line Number']}: {alert['Log Entry']}")
+
         else:
             print("No suspicious events detected.")
     else:
